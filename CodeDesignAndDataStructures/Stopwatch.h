@@ -12,7 +12,7 @@ class Stopwatch
         // Initialize the stopwatch
         stopwatch();
         // Start the stopwatch
-        void start();
+        void start(); 
     
         // Stop the stopwatch and update the total time
         void stop();
