@@ -9,8 +9,8 @@ int main()
 	original.add_element_to_end(6);
 
 	jVector<int> copy = original;
-	copy.remove_last_element();
-	copy.remove_last_element();
+	/*copy.remove_last_element();
+	copy.remove_last_element();*/
 
 	std::cout << original.size() << std::endl;
 	std::cout << copy.size() << std::endl;

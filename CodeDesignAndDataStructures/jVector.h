@@ -21,7 +21,17 @@ public:
 
 	jVector(const jVector& vec);			// copy constructs a vectorfrom another vector
 
-	jVector& operator=(const jVector& vec);	// copies the contents of the provided vector into this vector
+	jVector& operator=(const jVector& vec)	// copies the contents of the provided vector into this vector
+	{
+		J* newArray = new J[vec.arrSize];
+		arrSize = vec.arrSize;
+		arrCapacity = vec.arrSize;
+		for(size_t i = 0; i < arrSize; i++)
+		{
+			newArray[i] = vec[i];
+		}
+		return this;
+	}
 
 	void reserve(size_t newCapacity);	// reallocates the underlying array to at least the given capacity
 
@@ -52,16 +62,20 @@ jVector<J>::~jVector()					// destroys the underlying array
 template <typename J>
 jVector<J>::jVector(const jVector& vec)	// copy constructs a vector from another vector
 {
-	for (size_t i = 0; i < arrSize; i++)					
+	arr = new J[vec.arrSize];
+	arrSize = vec.arrSize;
+	arrCapacity = vec.arrSize;
+	for (size_t i = 0; i < arrSize; i++)
 	{
-		vec[i] = arr[i];
+		arr[i] = vec.arr[i];
 	}
-}			
+}
 
-template <typename J>
-jVector& operator=(const jVector& vec);	// copies the contents of the provided vector into this vector
-
-
+//template <typename J>
+//J& operator=(jVector& vec) const	// copies the contents of the provided vector into this vector
+//{
+//
+//}
 
 template <typename J>
 void jVector<J>::reserve(size_t newCapacity)
