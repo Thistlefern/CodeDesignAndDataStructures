@@ -23,12 +23,9 @@ public:
 
 	jVector& operator=(const jVector& vec)	// copies the contents of the provided vector into this vector
 	{
-		J* newArray = new J[vec.arrSize];
-		arrSize = vec.arrSize;
-		arrCapacity = vec.arrSize;
 		for(size_t i = 0; i < arrSize; i++)
 		{
-			newArray[i] = vec[i];
+			this[i] = vec[i];
 		}
 		return this;
 	}
@@ -70,12 +67,6 @@ jVector<J>::jVector(const jVector& vec)	// copy constructs a vector from another
 		arr[i] = vec.arr[i];
 	}
 }
-
-//template <typename J>
-//J& operator=(jVector& vec) const	// copies the contents of the provided vector into this vector
-//{
-//
-//}
 
 template <typename J>
 void jVector<J>::reserve(size_t newCapacity)
