@@ -121,6 +121,13 @@ public:
 	}
 	jList &operator=(const jList &other)	// copy-assignment
 	{
-		
+		node *otherNode = other.tail;
+		while (otherNode != nullptr)
+		{
+			pushFront(otherNode->data);
+			otherNode = otherNode->prev;
+		}
+		delete otherNode;
+		return *this;
 	}
 };
