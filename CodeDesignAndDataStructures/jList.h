@@ -22,7 +22,20 @@ public:
 	}
 	~jList()						// delete all nodes
 	{
-		delete jList();
+		while(head !=nullptr)
+		{
+			node *oldHead = head;			// creates a new node just to point to the head
+			head = oldHead->next;			// head becomes whatever the old head was			
+			if (head != nullptr)				// if head isn't null, sets the new head's previous pointer to null
+			{
+				head->prev = nullptr;
+			}
+			else
+			{
+				tail = nullptr;
+			}
+			delete oldHead;					// delete the data of the old head
+		}
 	}
 
 	void pushFront(const J& val)	// adds element to front (i.e. head)
@@ -44,7 +57,7 @@ public:
 			tail = newNumber;
 		}
 	}
-	void removeFront()				// removes element from head*
+	void removeFront()				// removes element from head
 	{
 		node *oldHead = head;			// creates a new node just to point to the head
 		head = oldHead->next;			// head becomes whatever the old head was			
@@ -98,10 +111,16 @@ public:
 
 	jList(const jList &other)		// copy-constructor
 	{
-		// TODO
+		// used Terry's code, because none of my implementations worked and his makes sense to me
+		node *otherNode = other.tail;
+		while(otherNode != nullptr)
+		{
+			pushFront(otherNode->data);
+			otherNode = otherNode->prev;
+		}
 	}
-	jList &operator=(constjList &other)	// cop-assignment
+	jList &operator=(const jList &other)	// copy-assignment
 	{
-
+		
 	}
 };

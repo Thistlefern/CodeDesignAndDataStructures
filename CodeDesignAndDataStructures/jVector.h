@@ -19,7 +19,7 @@ public:
 	//	*arr;
 	//}
 
-	jVector(const jVector& vec);			// copy constructs a vectorfrom another vector
+	jVector(const jVector& vec);			// copy constructs a vector from another vector
 
 	jVector& operator=(const jVector& vec)	// copies the contents of the provided vector into this vector
 	{
