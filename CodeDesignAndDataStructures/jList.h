@@ -130,4 +130,54 @@ public:
 		delete otherNode;
 		return *this;
 	}
+
+	const J &front() const			// returns the element at the head (const)
+	{
+		return head->data;
+	}
+	const J &back() const			// returns the element at the tail (tail)
+	{
+		return tail->data;
+	}
+
+	void remove(const J &val)		// removes all nodes equal to the given value
+	{
+		node *search = head;
+		while(search->next != nullptr)
+		{
+			if(head->data == val)
+			{
+				node *toDelete = head;
+				head = toDelete->next;
+				toDelete = nullptr;
+				delete toDelete;
+			}
+			else if(tail->data == val)
+			{
+				node *toDelete = tail;
+				tail = toDelete->prev;
+				toDelete = nullptr;
+				delete toDelete;
+			}
+			else if (search->data == val)
+			{
+				// TODO FIX THIS
+				/*std::cout << search->prev << std::endl;
+				std::cout << search->next << std::endl;
+				search = search->next;
+				node *priorSearch = search->prev;
+				node *toDelete = search;
+				search = toDelete->next;
+				toDelete = nullptr;
+				delete toDelete;
+				priorSearch->next = search;
+				search->prev = priorSearch;
+				delete priorSearch;*/
+			}
+			else
+			{
+				search = search->next;
+			}
+		}
+	}
 };
