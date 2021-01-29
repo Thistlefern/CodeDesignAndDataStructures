@@ -1,6 +1,7 @@
 #include <iostream>
 #include "jVector.h"
 #include "jList.h"
+#include "hashing.h"
 
 int main()
 {
@@ -81,6 +82,12 @@ int main()
 	//std::cout << "All nodes with value of 16 are removed" << std::endl;
 	//std::cout << "List head: " << list.front() << std::endl;
 	//std::cout << "List tail: " << list.back() << std::endl;
+
+	hash("Josie");
+	hash("Thistle");
+	hash("gay");
+	hash("josie");
+	hash("Josie");
 
 	return 0;
 }

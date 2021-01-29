@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="hashing.h" />
     <ClInclude Include="jBinaryTree.h" />
     <ClInclude Include="jList.h" />
     <ClInclude Include="jVector.h" />

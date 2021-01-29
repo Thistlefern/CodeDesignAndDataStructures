@@ -143,7 +143,7 @@ public:
 	void remove(const J &val)		// removes all nodes equal to the given value
 	{
 		node *search = head;
-		while(search->next != nullptr)
+		while(search != nullptr)
 		{
 			if(head->data == val)
 			{
