@@ -45,49 +45,35 @@ int main()
 	
 	// ********** Testing remove function **********
 
-	/*jList<int> list;
-	list.pushFront(14);
+	jList<int> list;
+	list.pushFront(12);		// tail
 	list.pushFront(16);
 	list.pushFront(15);
 	list.pushFront(18);
 	list.pushFront(12);
 	list.pushFront(15);
 	list.pushFront(13);
-	list.pushFront(12);
+	list.pushFront(12);		// head
 
 	std::cout << "List head: " << list.front() << std::endl;
-	std::cout << "List tail: " << list.back() << std::endl;*/
+	std::cout << "List tail: " << list.back() << std::endl;
 	
-	//list.remove(15);														// removing 15, a value that appears in the middle of the list
-	//std::cout << "All nodes with value of 15 are removed" << std::endl;
-	//std::cout << "List head: " << list.front() << std::endl;
-	//std::cout << "List tail: " << list.back() << std::endl;
+	list.remove(16);														// removing 16
+	std::cout << "All nodes with value of 16 are removed" << std::endl;
+	std::cout << "List head: " << list.front() << std::endl;
+	std::cout << "List tail: " << list.back() << std::endl;
 
-	//list.remove(14);
-	//std::cout << "All nodes with value of 14 are removed" << std::endl;		// removing 14, to make sure the tail is removed
-	//std::cout << "List head: " << list.front() << std::endl;
-	//std::cout << "List tail: " << list.back() << std::endl;
+	list.remove(12);														// removing 12
+	std::cout << "All nodes with value of 12 are removed" << std::endl;
+	std::cout << "List head: " << list.front() << std::endl;
+	std::cout << "List tail: " << list.back() << std::endl;
 
-	//list.remove(12);
-	//std::cout << "All nodes with value of 12 are removed" << std::endl;		// removing 12, to make sure the head is removed
-	//std::cout << "List head: " << list.front() << std::endl;
-	//std::cout << "List tail: " << list.back() << std::endl;
+	//// ********** Testing hashing **********
 
-	//list.remove(23);
-	//std::cout << "All nodes with value of 23 are removed" << std::endl;		// removing 23, to make sure there are no errors with "removing" a value that doesn't exist
-	//std::cout << "List head: " << list.front() << std::endl;
-	//std::cout << "List tail: " << list.back() << std::endl;
-
-	//list.remove(16);
-	//std::cout << "All nodes with value of 16 are removed" << std::endl;
-	//std::cout << "List head: " << list.front() << std::endl;
-	//std::cout << "List tail: " << list.back() << std::endl;
-
-	hash("Josie");
-	hash("Thistle");
-	hash("gay");
-	hash("josie");
-	hash("Josie");
+	//hash("Josie");
+	//hash("Thistle");
+	//hash("josie");
+	//hash("Josie");
 
 	return 0;
 }

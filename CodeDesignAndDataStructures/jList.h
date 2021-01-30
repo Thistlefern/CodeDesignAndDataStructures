@@ -143,41 +143,46 @@ public:
 	void remove(const J &val)		// removes all nodes equal to the given value
 	{
 		node *search = head;
+		// while we're working on a valid node (non-null)
 		while(search != nullptr)
 		{
-			if(head->data == val)
+			node *next = search->next;
+
+			// do some things
+			if (search->data == val)
 			{
-				node *toDelete = head;
-				head = toDelete->next;
-				toDelete = nullptr;
-				delete toDelete;
+				node *searchPrev = search->prev;
+				node *searchNext = search->next;
+
+				// if searchPrev is null, then we know that this node is at the head
+				// so rather than updating searchPrev, we need to update head
+				if(searchPrev == nullptr)
+				{
+					head = searchNext;
+					head->prev = nullptr;
+				}
+				else
+				{
+					searchPrev->next = searchNext;
+				}
+
+				if (searchNext == nullptr)
+				{
+					tail = searchPrev;
+					tail->next = nullptr;
+				}
+				else
+				{
+					searchNext->prev = searchPrev;
+				}
+
+				// if searchNext is null, then we know that this node is at the TAIL
+				// so rather than updating searchNExt, we need to update TAIL
+
+				delete search;
 			}
-			else if(tail->data == val)
-			{
-				node *toDelete = tail;
-				tail = toDelete->prev;
-				toDelete = nullptr;
-				delete toDelete;
-			}
-			else if (search->data == val)
-			{
-				// TODO FIX THIS
-				/*std::cout << search->prev << std::endl;
-				std::cout << search->next << std::endl;
-				search = search->next;
-				node *priorSearch = search->prev;
-				node *toDelete = search;
-				search = toDelete->next;
-				toDelete = nullptr;
-				delete toDelete;
-				priorSearch->next = search;
-				search->prev = priorSearch;
-				delete priorSearch;*/
-			}
-			else
-			{
-				search = search->next;
-			}
+
+			search = next;
 		}
 	}
 };
