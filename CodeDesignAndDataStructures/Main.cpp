@@ -46,27 +46,27 @@ int main()
 	// ********** Testing remove function **********
 
 	jList<int> list;
-	list.pushFront(12);		// tail
-	list.pushFront(16);
-	list.pushFront(15);
-	list.pushFront(18);
-	list.pushFront(12);
-	list.pushFront(15);
-	list.pushFront(13);
-	list.pushFront(12);		// head
+	//list.pushFront(12);		// tail
+	//list.pushFront(16);
+	//list.pushFront(15);
+	//list.pushFront(18);
+	//list.pushFront(12);
+	//list.pushFront(15);
+	//list.pushFront(13);
+	//list.pushFront(12);		// head
 
-	std::cout << "List head: " << list.front() << std::endl;
-	std::cout << "List tail: " << list.back() << std::endl;
-	
-	list.remove(16);														// removing 16
-	std::cout << "All nodes with value of 16 are removed" << std::endl;
-	std::cout << "List head: " << list.front() << std::endl;
-	std::cout << "List tail: " << list.back() << std::endl;
+	//std::cout << "List head: " << list.front() << std::endl;
+	//std::cout << "List tail: " << list.back() << std::endl;
+	//
+	//list.remove(16);														// removing 16
+	//std::cout << "All nodes with value of 16 are removed" << std::endl;
+	//std::cout << "List head: " << list.front() << std::endl;
+	//std::cout << "List tail: " << list.back() << std::endl;
 
-	list.remove(12);														// removing 12
-	std::cout << "All nodes with value of 12 are removed" << std::endl;
-	std::cout << "List head: " << list.front() << std::endl;
-	std::cout << "List tail: " << list.back() << std::endl;
+	//list.remove(12);														// removing 12
+	//std::cout << "All nodes with value of 12 are removed" << std::endl;
+	//std::cout << "List head: " << list.front() << std::endl;
+	//std::cout << "List tail: " << list.back() << std::endl;
 
 	//// ********** Testing hashing **********
 
@@ -74,6 +74,19 @@ int main()
 	//hash("Thistle");
 	//hash("josie");
 	//hash("Josie");
+
+	std::cout << list.empty() << std::endl;
+
+	list.pushFront(2);
+	list.pushFront(2);
+	list.pushFront(2);
+	list.pushFront(2);
+	list.pushFront(2);
+	list.pushFront(2);
+
+	list.clear();
+
+	std::cout << list.empty() << std::endl;
 
 	return 0;
 }

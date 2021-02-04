@@ -185,4 +185,29 @@ public:
 			search = next;
 		}
 	}
+
+	bool empty() const
+	{
+		if(head == nullptr && tail == nullptr)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
+	void clear()
+	{
+		while(head != nullptr)
+		{
+			removeFront();
+		}
+	}
+
+	void resize(size_t newSize)
+	{
+		// TODO
+	}
 };
