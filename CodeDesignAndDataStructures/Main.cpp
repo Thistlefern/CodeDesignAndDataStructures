@@ -2,6 +2,7 @@
 #include "jVector.h"
 #include "jList.h"
 #include "hashing.h"
+#include "jBinaryTree.h"
 
 int main()
 {
@@ -45,15 +46,15 @@ int main()
 	
 	// ********** Testing remove function **********
 
-	jList<int> list;
-	list.pushFront(12);		// tail
-	list.pushFront(16);
-	list.pushFront(15);
-	list.pushFront(18);
-	list.pushFront(12);
-	list.pushFront(15);
-	list.pushFront(13);
-	list.pushFront(12);		// head
+	//jList<int> list;
+	//list.pushFront(12);		// tail
+	//list.pushFront(16);
+	//list.pushFront(15);
+	//list.pushFront(18);
+	//list.pushFront(12);
+	//list.pushFront(15);
+	//list.pushFront(13);
+	//list.pushFront(12);		// head
 
 	//std::cout << "List head: " << list.front() << std::endl;
 	//std::cout << "List tail: " << list.back() << std::endl;
@@ -75,16 +76,24 @@ int main()
 	//hash("josie");
 	//hash("Josie");
 
-	std::cout << list.empty() << std::endl;
+	/*std::cout << list.empty() << std::endl;*/
 
 	/*list.clear();
 
 	std::cout << list.empty() << std::endl;*/
 
-	list.resize(6);
+	//list.resize(6);
 
-	std::cout << "List head: " << list.front() << std::endl;
-	std::cout << "List tail: " << list.back() << std::endl;
+	//std::cout << "List head: " << list.front() << std::endl;
+	//std::cout << "List tail: " << list.back() << std::endl;
+
+	// ********** Testing Binary Tree **********
+	
+	jBinaryTree<int> binaryTree;
+	binaryTree.insert(12);
+	binaryTree.insert(13);
+
+	// TODO find some way to test if it worked
 
 	return 0;
 }

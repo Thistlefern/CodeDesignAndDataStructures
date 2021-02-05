@@ -53,12 +53,28 @@ public:
 	{
 		if(root == nullptr)
 		{
-			root = value;
+			root->data = value;
 		}
-		else // TODO while loop?
+		else
+		{
+			// TODO finish this
+			vertex *current = root;
+			while(current != nullptr)
+			{
+				if(current->data > value)
+				{
+					current = current->left;
+				}
+				else if(current->data < value)
+				{
+					current = current->right;
+				}
+			}
+			current->data = value;
+		}
 	}
 
 private:
-	std::vector<vertex *> vertices;
+	// std::vector<vertex *> vertices;
 	vertex *root;
 };
