@@ -69,7 +69,6 @@ public:
 		{
 			tail = nullptr;
 		}
-		delete oldHead;					// delete the data of the old head
 	}
 	void pushBack(const J& val)		// adds element to back (i.e. tail)
 	{
@@ -88,7 +87,7 @@ public:
 	void removeBack()				// removes element from tail
 	{
 		node *oldTail = tail;			// creates a new node just to point to the head
-		head = oldTail->prev;			// head becomes whatever the old head was			
+		tail = oldTail->prev;			// head becomes whatever the old head was			
 		if (tail != nullptr)			// if head isn't null, sets the new head's previous pointer to null
 		{
 			tail->next = nullptr;
@@ -97,7 +96,6 @@ public:
 		{
 			head = nullptr;
 		}
-		delete oldTail;					// delete the data of the old head
 	}
 
 	J& front()						// returns the element at the head
@@ -208,6 +206,133 @@ public:
 
 	void resize(size_t newSize)
 	{
-		// TODO
+		size_t nodeCount = 0;
+		node *count = head;
+		while(count != nullptr)
+		{
+			nodeCount++;
+			count = count->next;
+		}
+
+		if(nodeCount < newSize)
+		{
+			nodeCount = newSize - nodeCount;
+			for(size_t i = 0; i < nodeCount; i++)
+			{
+				pushBack(0);
+			}
+		}
+		else if(nodeCount > newSize)
+		{
+			nodeCount -= newSize;
+			for(size_t i = 0; i < (nodeCount); i++)
+			{
+				removeBack();
+			}
+		}
+	}
+
+	class iterator
+	{
+	public:
+
+		// current node being operated on
+		node *cur;
+
+		// initializes an empty iterator pointing to null
+		iterator()
+		{
+			cur = nullptr;
+		}
+		// initializes an iterator pointing to a given node
+		iterator(node *startNode)
+		{
+			cur = startNode;
+		}
+
+		// returns true if the iterator points to the same node
+		bool operator==(const iterator &rhs) const
+		{
+			if(cur == rhs.cur)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		// returns false if the iterator does not point to the same node
+		bool operator!=(const iterator &rhs) const
+		{
+			if (cur != rhs.cur)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
+		// returns a reference to the element pointed to by the current node
+		J &operator*() const
+		{
+			return cur->data;
+		}
+
+		// pre-increment (returns a reference to this iterator after it is incremented)
+		iterator &operator++()
+		{
+			// ++it is PREincrement
+			// it++ is POSTincrement
+			cur = cur->next;
+			return *this;
+		}
+		// post-increment returns an iterator to current while incrementing the existing it)
+		iterator operator++(int)
+		{
+			iterator other = *this;
+			cur = cur->next;
+			return other;
+		}
+
+		// pre-decrement (returns a reference to this iterator after it is decremented)
+		iterator &operator--()
+		{
+			cur = cur->prev;
+			return *this;
+		}
+		// post-decrement (returns an iterator to current while decrementing the existing it)
+		iterator operator--(int)
+		{
+			iterator other = *this;
+			cur = cur->prev;
+			return other;
+		}
+	};
+	// Returns an iterator pointing to the first node
+	iterator begin()
+	{
+		return iterator(head);
+	}
+	// Returns an iterator pointing to after the last node
+	iterator end()
+	{
+		return iterator(tail);
+	}
+
+	// inserts a new node after the given position
+	iterator insert(const iterator &it, const J &val)
+	{
+		node *newNode = new node;
+		newNode->data = val;
+		node nextNode = it.cur->next;
+		it.cur->next = newNode;
+		newNode->prev = it.cur;
+		newNode->next = nextNode;
+		nextNode->prev = newNode;
+
+		return iterator(newNode);
 	}
 };

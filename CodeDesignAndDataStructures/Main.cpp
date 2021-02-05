@@ -46,14 +46,14 @@ int main()
 	// ********** Testing remove function **********
 
 	jList<int> list;
-	//list.pushFront(12);		// tail
-	//list.pushFront(16);
-	//list.pushFront(15);
-	//list.pushFront(18);
-	//list.pushFront(12);
-	//list.pushFront(15);
-	//list.pushFront(13);
-	//list.pushFront(12);		// head
+	list.pushFront(12);		// tail
+	list.pushFront(16);
+	list.pushFront(15);
+	list.pushFront(18);
+	list.pushFront(12);
+	list.pushFront(15);
+	list.pushFront(13);
+	list.pushFront(12);		// head
 
 	//std::cout << "List head: " << list.front() << std::endl;
 	//std::cout << "List tail: " << list.back() << std::endl;
@@ -77,16 +77,14 @@ int main()
 
 	std::cout << list.empty() << std::endl;
 
-	list.pushFront(2);
-	list.pushFront(2);
-	list.pushFront(2);
-	list.pushFront(2);
-	list.pushFront(2);
-	list.pushFront(2);
+	/*list.clear();
 
-	list.clear();
+	std::cout << list.empty() << std::endl;*/
 
-	std::cout << list.empty() << std::endl;
+	list.resize(6);
+
+	std::cout << "List head: " << list.front() << std::endl;
+	std::cout << "List tail: " << list.back() << std::endl;
 
 	return 0;
 }
