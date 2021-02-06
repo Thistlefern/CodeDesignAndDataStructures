@@ -93,7 +93,10 @@ int main()
 	binaryTree.insert(12);
 	binaryTree.insert(13);
 
-	// TODO find some way to test if it worked
+	std::cout << binaryTree.root->data << std::endl;
+
+	std::cout << binaryTree.search(13) << std::endl;
+	std::cout << binaryTree.search(20) << std::endl;
 
 	return 0;
 }
