@@ -32,7 +32,7 @@ int main()
 	tree.insert(14);
 	tree.insert(9);
 
-
+	tree.remove(8);
 
 	return 0;
 }

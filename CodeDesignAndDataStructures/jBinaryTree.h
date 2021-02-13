@@ -44,10 +44,12 @@ public:
 	};
 
 	vertex *root;
+	vertex *found;
 
 	jBinaryTree()
 	{
 		root = nullptr;
+		found = nullptr;
 	}
 	~jBinaryTree()
 	{
@@ -73,27 +75,22 @@ public:
 	{
 		_insertRecursive(root, value);
 	}
-	bool search(const J &value, vertex &found)
+	bool search(const J &value)
 	{
-		if(found == nullptr)
-		{
-			return false;
-		}
-		else if(found->data == value)
-		{
-			// TODO do the thing
-		}
-		else if(found->data > value)
-		{
-			search(value, found->left);
-		}
-		else
-		{
-			search(value, found->right);
-		}
+		return _searching(root, value);
 	}
 	void remove(const J &value)
 	{
+		_searching(root, value);
+		if(found->left != nullptr)
+		{
+			std::cout << "test1";
+		}
+		else
+		{
+			std::cout << "test2";
+		}
+
 	//	vertex *parent = root;
 	//	if(parent->left != nullptr)
 	//	{
@@ -146,6 +143,27 @@ private:
 		else if(value > current->data)
 		{
 			_insertRecursive(current->right, value);
+		}
+	}
+
+	bool _searching(vertex *&toSearch, const J &value)
+	{
+		if (toSearch == nullptr)
+		{
+			return false;
+		}
+		else if (toSearch->data == value)
+		{
+			found = toSearch;
+			return true;
+		}
+		else if (toSearch->data > value)
+		{
+			_searching(toSearch->left, value);
+		}
+		else
+		{
+			_searching(toSearch->right, value);
 		}
 	}
 };
