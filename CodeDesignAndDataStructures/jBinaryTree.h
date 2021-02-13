@@ -73,9 +73,24 @@ public:
 	{
 		_insertRecursive(root, value);
 	}
-	bool search(const J &value)
+	bool search(const J &value, vertex &found)
 	{
-		return _searching(root, value);
+		if(found == nullptr)
+		{
+			return false;
+		}
+		else if(found->data == value)
+		{
+			// TODO do the thing
+		}
+		else if(found->data > value)
+		{
+			search(value, found->left);
+		}
+		else
+		{
+			search(value, found->right);
+		}
 	}
 	void remove(const J &value)
 	{
@@ -131,27 +146,6 @@ private:
 		else if(value > current->data)
 		{
 			_insertRecursive(current->right, value);
-		}
-	}
-
-	bool _searching(vertex *&current, const J &value)
-	{
-		if(current == nullptr)
-		{
-			return false;
-		}
-		else if(current->data == value)
-		{
-			vertex &found = *current;
-			return true;
-		}
-		else if(current->data > value)
-		{
-			_searching(current->left, value);
-		}
-		else
-		{
-			_searching(current->right, value);
 		}
 	}
 };
