@@ -51,7 +51,7 @@ public:
 	{
 		root = nullptr;
 		found = nullptr;
-		parent = root;
+		parent = nullptr;
 	}
 	~jBinaryTree()
 	{
@@ -83,12 +83,13 @@ public:
 	}
 	void remove(const J &value)
 	{
-		_searching(root, value);
-		if(found->left == nullptr && found->right == nullptr)
+		_searching(root, value);	// search for the value
+
+		if(found->left == nullptr && found->right == nullptr)	// if the vertex found has no children...
 		{
-			vertex *toDelete = found;
+			vertex *toDelete = found;					// ...mark the vertex for deletion...
 			
-			if(found == parent->left)
+			if(found == parent->left)					// ...and make sure that the deleted vertex's parent doesn't point to anything where the vertex used to be
 			{
 				parent->left = nullptr;
 			}
@@ -96,52 +97,44 @@ public:
 			{
 				parent->right = nullptr;
 			}
-			found = nullptr;
-			parent = root;
-			delete toDelete;
+			found = nullptr;							// reset found
+			parent = root;								// reset parent to the root
+			delete toDelete;							// delete the vertex
 		}
-		else if(found->left != nullptr && found->right != nullptr)
+		else if(found->left != nullptr && found->right != nullptr)	// if the vertex has two children...
 		{
 			std::cout << "two children" << std::endl;
 		}
-		else
+		else	// if the vertex has one child...
 		{
-			std::cout << "one child" << std::endl;
+			if(found->left != nullptr)					// ...figure out which side the child is on...
+			{
+				if(parent->left = found)				// ...and set the parent's pointer appropriately to point to the child
+				{
+					parent->left = found->left;
+				}
+				else if(parent->right = found)
+				{
+					parent->right = found->left;
+				}
+			}
+			else
+			{
+				if (parent->left = found)
+				{
+					parent->left = found->right;
+				}
+				else if (parent->right = found)
+				{
+					parent->right = found->right;
+				}
+			}
+			
+			vertex *toDelete = found;					// mark the vertex for deletion
+			found = nullptr;							// reset found
+			parent = root;								// reset parent to root
+			delete toDelete;							// delete the vertex
 		}
-
-	//	vertex *parent = root;
-	//	if(parent->left != nullptr)
-	//	{
-	//		vertex *current = root->left;
-	//	}
-	//	// TODO ELSE
-	//	
-	//	while(current != nullptr)
-	//	{
-	//		if (current->data == value)
-	//		{
-	//			if(current->left == nullptr && current->right == nullptr)
-	//			{
-	//				current = nullptr;
-	//			}
-	//			else if(current->left != nullptr && current->right != nullptr)
-	//			{
-	//				// deleting node with two children
-	//			}
-	//			else
-	//			{
-
-	//			}
-	//		}
-	//		else if (current->data > value)
-	//		{
-	//			current = current->left;
-	//		}
-	//		else
-	//		{
-	//			current = current->right;
-	//		}
-	//	}
 	}
 
 private:
@@ -161,6 +154,10 @@ private:
 		else if(value > current->data)
 		{
 			_insertRecursive(current->right, value);
+		}
+		if(parent == nullptr)
+		{
+			parent = root;
 		}
 	}
 

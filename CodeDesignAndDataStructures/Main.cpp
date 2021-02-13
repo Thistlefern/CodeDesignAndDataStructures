@@ -31,10 +31,7 @@ int main()
 	tree.insert(8);
 	tree.insert(14);
 	tree.insert(9);
-
-	tree.remove(9);
-
-	std::cout << tree.search(9);
+	tree.insert(11);
 
 	return 0;
 }
