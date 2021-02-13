@@ -45,11 +45,13 @@ public:
 
 	vertex *root;
 	vertex *found;
+	vertex *parent;
 
 	jBinaryTree()
 	{
 		root = nullptr;
 		found = nullptr;
+		parent = root;
 	}
 	~jBinaryTree()
 	{
@@ -82,13 +84,29 @@ public:
 	void remove(const J &value)
 	{
 		_searching(root, value);
-		if(found->left != nullptr)
+		if(found->left == nullptr && found->right == nullptr)
 		{
-			std::cout << "test1";
+			vertex *toDelete = found;
+			
+			if(found == parent->left)
+			{
+				parent->left = nullptr;
+			}
+			else
+			{
+				parent->right = nullptr;
+			}
+			found = nullptr;
+			parent = root;
+			delete toDelete;
+		}
+		else if(found->left != nullptr && found->right != nullptr)
+		{
+			std::cout << "two children" << std::endl;
 		}
 		else
 		{
-			std::cout << "test2";
+			std::cout << "one child" << std::endl;
 		}
 
 	//	vertex *parent = root;
@@ -159,10 +177,18 @@ private:
 		}
 		else if (toSearch->data > value)
 		{
+			if(toSearch != root)
+			{
+				parent = toSearch;
+			}
 			_searching(toSearch->left, value);
 		}
 		else
 		{
+			if (toSearch != root)
+			{
+				parent = toSearch;
+			}
 			_searching(toSearch->right, value);
 		}
 	}

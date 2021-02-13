@@ -32,7 +32,9 @@ int main()
 	tree.insert(14);
 	tree.insert(9);
 
-	tree.remove(8);
+	tree.remove(9);
+
+	std::cout << tree.search(9);
 
 	return 0;
 }
