@@ -81,9 +81,9 @@ public:
 	{
 		return _searching(root, value);
 	}
-	void remove(const J &value)
+	void remove(const J &value, vertex *&start)
 	{
-		_searching(root, value);	// search for the value
+		_searching(start, value);	// search for the value
 
 		if(found->left == nullptr && found->right == nullptr)	// if the vertex found has no children...
 		{
@@ -103,7 +103,15 @@ public:
 		}
 		else if(found->left != nullptr && found->right != nullptr)	// if the vertex has two children...
 		{
-			std::cout << "two children" << std::endl;
+			vertex *smallestLargerThan = found->right;
+			if(smallestLargerThan->left !=nullptr)
+			{
+				smallestLargerThan = smallestLargerThan->left;
+			}
+
+			found->data = smallestLargerThan->data;
+
+			remove(smallestLargerThan->data, smallestLargerThan);
 		}
 		else	// if the vertex has one child...
 		{
