@@ -77,8 +77,8 @@ public:
 	{
 		return _searching(root, value);
 	}
-	//void remove(const J &value)
-	//{
+	void remove(const J &value)
+	{
 	//	vertex *parent = root;
 	//	if(parent->left != nullptr)
 	//	{
@@ -112,7 +112,7 @@ public:
 	//			current = current->right;
 	//		}
 	//	}
-	//}
+	}
 
 private:
 	std::vector<vertex *> vertices;
@@ -142,6 +142,7 @@ private:
 		}
 		else if(current->data == value)
 		{
+			vertex &found = *current;
 			return true;
 		}
 		else if(current->data > value)

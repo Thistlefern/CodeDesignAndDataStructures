@@ -12,7 +12,7 @@ class jList
 	};
 
 	node *head;						// pointer to the head of the linked list
-	node *tail;						// pointers to the tail of the linked list
+	node *tail;						// pointer to the tail of the linked list
 
 public:
 	jList()							// initializes head and tail to null
@@ -69,6 +69,7 @@ public:
 		{
 			tail = nullptr;
 		}
+		delete oldHead;
 	}
 	void pushBack(const J& val)		// adds element to back (i.e. tail)
 	{
@@ -77,6 +78,11 @@ public:
 		newNumber->prev = tail;			// sets the previous pointer to the OLD tail, PRIOR to setting this number as the new tail
 		newNumber->next = nullptr;		// sets the next pointer to null, as this number will be the new tail
 		
+		if (tail != nullptr)
+		{
+			tail->next = newNumber;
+		}
+
 		tail = newNumber;				// sets the tail to be the new number
 		
 		if (head == nullptr)			// if this is the first number added (ie head is still null), this number is also the head
@@ -96,6 +102,7 @@ public:
 		{
 			head = nullptr;
 		}
+		delete oldTail;
 	}
 
 	J& front()						// returns the element at the head
@@ -119,13 +126,20 @@ public:
 	}
 	jList &operator=(const jList &other)	// copy-assignment
 	{
+		while(head != nullptr)
+		{
+			removeFront();
+		}
+
+		tail = other.tail;
+
 		node *otherNode = other.tail;
 		while (otherNode != nullptr)
 		{
 			pushFront(otherNode->data);
 			otherNode = otherNode->prev;
 		}
-		delete otherNode;
+
 		return *this;
 	}
 
@@ -188,11 +202,11 @@ public:
 	{
 		if(head == nullptr && tail == nullptr)
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -267,11 +281,11 @@ public:
 		{
 			if (cur != rhs.cur)
 			{
-				return false;
+				return true;
 			}
 			else
 			{
-				return true;
+				return false;
 			}
 		}
 
