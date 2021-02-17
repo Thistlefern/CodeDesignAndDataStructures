@@ -55,21 +55,11 @@ public:
 	}
 	~jBinaryTree()
 	{
+		vertex *current = root;
+
 		while(root != nullptr)
 		{
-			vertex *current = root;
-			if(current->left != nullptr)
-			{
-				current = current->left;
-			}
-			else if(current->right !=nullptr)
-			{
-				current = current->right;
-			}
-			else
-			{
-				current = nullptr;
-			}
+			remove(root);
 		}
 	}
 
@@ -77,10 +67,26 @@ public:
 	{
 		_insertRecursive(root, value);
 	}
-	bool search(const J &value)
+	bool search(const J &value, vertex *& foundRef)
 	{
-		return _searching(root, value);
+		bool success = _searching(root, value);
+
+		if(success)
+		{
+			foundRef = found;
+		}
+		else
+		{
+			foundRef = nullptr;
+		}
+		return success;
 	}
+
+	void remove(vertex *target)
+	{
+		remove(target->data, root);
+	}
+
 	void remove(const J &value, vertex *&start)
 	{
 		_searching(start, value);	// search for the value
@@ -117,22 +123,22 @@ public:
 		{
 			if(found->left != nullptr)					// ...figure out which side the child is on...
 			{
-				if(parent->left = found)				// ...and set the parent's pointer appropriately to point to the child
+				if(parent->left == found)				// ...and set the parent's pointer appropriately to point to the child
 				{
 					parent->left = found->left;
 				}
-				else if(parent->right = found)
+				else if(parent->right == found)
 				{
 					parent->right = found->left;
 				}
 			}
 			else
 			{
-				if (parent->left = found)
+				if (parent->left == found)
 				{
 					parent->left = found->right;
 				}
-				else if (parent->right = found)
+				else if (parent->right == found)
 				{
 					parent->right = found->right;
 				}

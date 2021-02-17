@@ -333,7 +333,7 @@ public:
 	// Returns an iterator pointing to after the last node
 	iterator end()
 	{
-		return iterator(tail);
+		return iterator(nullptr);
 	}
 
 	// inserts a new node after the given position
